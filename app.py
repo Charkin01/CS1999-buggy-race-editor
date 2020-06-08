@@ -23,7 +23,7 @@ def home():
 @app.route('/new', methods = ['POST', 'GET'])
 def create_buggy():
    if request.method == 'GET':
-      #gets current number of wheels
+      #gets current number of each variable
       con = sql.connect(DATABASE_FILE)
       con.row_factory = sql.Row
       cur = con.cursor()
@@ -37,8 +37,9 @@ def create_buggy():
       flag_color = request.form['flag_color']
       flag_color_secondary = request.form['flag_color_secondary']
       flag_pattern = request.form['flag_pattern']
-      total_cost = int(request.form['hamster_booster'])*5
-      if not qty_wheels.isdigit():
+      hamster_booster = request.form['hamster_booster']
+      #Validation of the input data
+      if not qty_wheels.isdigit() or not hamster_booster.isdigit():
          msg = "You have entered characters (string) instead of digits (integers). The buggy was not created. Please, return to the main menu"
          return render_template("updated.html", msg = msg)
       if int(qty_wheels) < 4:
@@ -47,14 +48,18 @@ def create_buggy():
       if int(qty_wheels)%2 != 0:
          msg = "Buggy cannot have odd number of wheels (sad). The buggy was not created. Please, return to the main menu"
          return render_template("updated.html", msg = msg)
+      total_cost = int(hamster_booster)*5
       msg = f"qty_wheels={qty_wheels}"
    try:
+      #make a for loop from this to store new data in database
       with sql.connect(DATABASE_FILE) as con:
          cur = con.cursor()
          cur.execute("UPDATE buggies set qty_wheels=? WHERE id=?", (qty_wheels, DEFAULT_BUGGY_ID))
          cur.execute("UPDATE buggies set flag_color=? WHERE id=?", (flag_color, DEFAULT_BUGGY_ID))
          cur.execute("UPDATE buggies set flag_color_secondary=? WHERE id=?", (flag_color_secondary, DEFAULT_BUGGY_ID))
          cur.execute("UPDATE buggies set flag_pattern=? WHERE id=?", (flag_pattern, DEFAULT_BUGGY_ID))
+         cur.execute("UPDATE buggies set hamster_booster=? WHERE id=?", (hamster_booster, DEFAULT_BUGGY_ID))
+         cur.execute("UPDATE buggies set total_cost=? WHERE id=?", (total_cost, DEFAULT_BUGGY_ID))
          con.commit()
          msg = "Buggy was created. Record successfully saved"
    except:
