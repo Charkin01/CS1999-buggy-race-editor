@@ -7,9 +7,21 @@
   <h1>Make buggy</h1>
   <form action="/new" method="post">
     <label for="qty_wheels">Number of wheels:</label>
-    <input type="text" name="qty_wheels" />
+    <input type="text" name="qty_wheels" value = "{{ buggy['qty_wheels'] }}"/>
+	</br>
+	</br>
 	<label for="flag_color">Color of flag</label>
-    <input type="text" name="flag_color" />
+    <input type="text" name="flag_color" value = "{{ buggy['flag_color'] }}"/>
+	</br>
+	</br>
+	<label for="flag_color_secondary">Color of seondary flag</label>
+    <input type="text" name="flag_color_secondary" value = "{{ buggy['flag_color_secondary'] }}"/>
+	</br>
+	</br>
+	<label for="flag_pattern">Pattern of the flag</label>
+    <input type="text" name="flag_pattern" value = "{{ buggy['flag_pattern'] }}"/>
+	</br>
+	</br>
     <input type="submit" class="button">
   </form>
   <p>

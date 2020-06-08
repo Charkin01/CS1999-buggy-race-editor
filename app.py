@@ -22,26 +22,41 @@ def home():
 #------------------------------------------------------------
 @app.route('/new', methods = ['POST', 'GET'])
 def create_buggy():
-  if request.method == 'GET':
-    return render_template("buggy-form.html")
-  elif request.method == 'POST':
-    msg=""
-    qty_wheels = request.form['qty_wheels']
-    flag_color = request.form['flag_color']
-    if not qty_wheels.isdigit():
-       return render_template("buggy-form.html")
-    msg = f"qty_wheels={qty_wheels}" 
-    try:
+   if request.method == 'GET':
+      #gets current number of wheels
+      con = sql.connect(DATABASE_FILE)
+      con.row_factory = sql.Row
+      cur = con.cursor()
+      cur.execute("SELECT * FROM buggies")
+      record = cur.fetchone();
+      return render_template("buggy-form.html", buggy = record)
+   elif request.method == 'POST':
+      msg=""
+      #inputs quantity of wheels
+      qty_wheels = request.form['qty_wheels']
+      #inputs flag
+      flag_color = request.form['flag_color']
+      #inputs secondary flag
+      flag_color_secondary = request.form['flag_color_secondary']
+      #inputs flag pattern
+      flag_pattern = request.form['flag_pattern']
+      if not qty_wheels.isdigit():
+         return render_template("buggy-form.html")
+      msg = f"qty_wheels={qty_wheels}"
+   #submits data to database
+   try:
       with sql.connect(DATABASE_FILE) as con:
-        cur = con.cursor()
-        cur.execute("UPDATE buggies set qty_wheels=? WHERE id=?", (qty_wheels, DEFAULT_BUGGY_ID))
-        cur.execute("UPDATE buggies set flag_color=? WHERE id=?", (flag_color, DEFAULT_BUGGY_ID))
-        con.commit()
-        msg = "Record successfully saved"
-    except:
+         cur = con.cursor()
+         cur.execute("UPDATE buggies set qty_wheels=? WHERE id=?", (qty_wheels, DEFAULT_BUGGY_ID))
+         cur.execute("UPDATE buggies set flag_color=? WHERE id=?", (flag_color, DEFAULT_BUGGY_ID))
+         cur.execute("UPDATE buggies set flag_color_secondary=? WHERE id=?", (flag_color_secondary, DEFAULT_BUGGY_ID))
+         cur.execute("UPDATE buggies set flag_pattern=? WHERE id=?", (flag_pattern, DEFAULT_BUGGY_ID))
+         con.commit()
+         msg = "Record successfully saved"
+   except:
       con.rollback()
       msg = "error in update operation"
-    finally:
+   finally:
       con.close()
       return render_template("updated.html", msg = msg)
 
@@ -50,19 +65,19 @@ def create_buggy():
 #------------------------------------------------------------
 @app.route('/buggy')
 def show_buggies():
-  con = sql.connect(DATABASE_FILE)
-  con.row_factory = sql.Row
-  cur = con.cursor()
-  cur.execute("SELECT * FROM buggies")
-  record = cur.fetchone(); 
-  return render_template("buggy.html", buggy = record)
+   con = sql.connect(DATABASE_FILE)
+   con.row_factory = sql.Row
+   cur = con.cursor()
+   cur.execute("SELECT * FROM buggies")
+   record = cur.fetchone();
+   return render_template("buggy.html", buggy = record)
 
 #------------------------------------------------------------
 # a page for displaying the buggy
 #------------------------------------------------------------
 @app.route('/new')
 def edit_buggy():
-  return render_template("buggy-form.html")
+   return render_template("buggy-form.html")
 
 
 #------------------------------------------------------------
@@ -73,14 +88,14 @@ def edit_buggy():
 #------------------------------------------------------------
 @app.route('/json')
 def summary():
-  con = sql.connect(DATABASE_FILE)
-  con.row_factory = sql.Row
-  cur = con.cursor()
-  cur.execute("SELECT * FROM buggies WHERE id=? LIMIT 1", (DEFAULT_BUGGY_ID))
-  return jsonify(
+   con = sql.connect(DATABASE_FILE)
+   con.row_factory = sql.Row
+   cur = con.cursor()
+   cur.execute("SELECT * FROM buggies WHERE id=? LIMIT 1", (DEFAULT_BUGGY_ID))
+   return jsonify(
       {k: v for k, v in dict(zip(
-        [column[0] for column in cur.description], cur.fetchone())).items()
-        if (v != "" and v is not None)
+         [column[0] for column in cur.description], cur.fetchone())).items()
+       if (v != "" and v is not None)
       }
     )
 
@@ -92,19 +107,19 @@ def summary():
 #------------------------------------------------------------
 @app.route('/delete', methods = ['POST'])
 def delete_buggy():
-  try:
-    msg = "deleting buggy"
-    with sql.connect(DATABASE_FILE) as con:
-      cur = con.cursor()
-      cur.execute("DELETE FROM buggies")
-      con.commit()
-      msg = "Buggy deleted"
-  except:
-    con.rollback()
-    msg = "error in delete operation"
-  finally:
-    con.close()
-    return render_template("updated.html", msg = msg)
+   try:
+      msg = "deleting buggy"
+      with sql.connect(DATABASE_FILE) as con:
+         cur = con.cursor()
+         cur.execute("DELETE FROM buggies")
+         con.commit()
+         msg = "Buggy deleted"
+   except:
+      con.rollback()
+      msg = "error in delete operation"
+   finally:
+      con.close()
+      return render_template("updated.html", msg = msg)
 
 
 if __name__ == '__main__':
