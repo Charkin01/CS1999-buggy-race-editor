@@ -32,18 +32,22 @@ def create_buggy():
       return render_template("buggy-form.html", buggy = record)
    elif request.method == 'POST':
       msg=""
-      #inputs quantity of wheels
+      #input
       qty_wheels = request.form['qty_wheels']
-      #inputs flag
       flag_color = request.form['flag_color']
-      #inputs secondary flag
       flag_color_secondary = request.form['flag_color_secondary']
-      #inputs flag pattern
       flag_pattern = request.form['flag_pattern']
+      total_cost = int(request.form['hamster_booster'])*5
       if not qty_wheels.isdigit():
-         return render_template("buggy-form.html")
+         msg = "You have entered characters (string) instead of digits (integers). The buggy was not created. Please, return to the main menu"
+         return render_template("updated.html", msg = msg)
+      if int(qty_wheels) < 4:
+         msg = "Buggy cannot have less then 4 wheels. The buggy was not created. Please, return to the main menu"
+         return render_template("updated.html", msg = msg)
+      if int(qty_wheels)%2 != 0:
+         msg = "Buggy cannot have odd number of wheels (sad). The buggy was not created. Please, return to the main menu"
+         return render_template("updated.html", msg = msg)
       msg = f"qty_wheels={qty_wheels}"
-   #submits data to database. Ideally it should in for loop.
    try:
       with sql.connect(DATABASE_FILE) as con:
          cur = con.cursor()
@@ -52,7 +56,7 @@ def create_buggy():
          cur.execute("UPDATE buggies set flag_color_secondary=? WHERE id=?", (flag_color_secondary, DEFAULT_BUGGY_ID))
          cur.execute("UPDATE buggies set flag_pattern=? WHERE id=?", (flag_pattern, DEFAULT_BUGGY_ID))
          con.commit()
-         msg = "Record successfully saved"
+         msg = "Buggy was created. Record successfully saved"
    except:
       con.rollback()
       msg = "error in update operation"
