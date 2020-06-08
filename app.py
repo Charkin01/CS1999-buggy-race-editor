@@ -43,7 +43,7 @@ def create_buggy():
       if not qty_wheels.isdigit():
          return render_template("buggy-form.html")
       msg = f"qty_wheels={qty_wheels}"
-   #submits data to database
+   #submits data to database. Ideally it should in for loop
    try:
       with sql.connect(DATABASE_FILE) as con:
          cur = con.cursor()
