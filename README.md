@@ -4,6 +4,17 @@ CS1999: Buggy Race Editor
 > This is the "buggy editor" component of the Foundation Year Computer Science
 > project at RHUL.
 
+Infromation about updated version:
+1. Function "Random" does not work properly, it changes table and in order to continue properly, start init.py
+2. Init.py setups all attrbitues with default values, you can check it if you open app and immidealty go to "View Buggy"
+3. You cannot input all attributes (later will be implemented)
+4. You can press button "Edit" but really it will not edit
+5. Delete function works, but deletes to much (works in vanilla version). Start init.py to continue using app
+6. CSS maybe does uploads. Check it with another browser (Edge, Mozilla)
+7. My account in github - Charkin01. 
+
+Information about old version:
+
 Overview
 --------
 

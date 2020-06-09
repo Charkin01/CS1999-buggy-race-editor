@@ -44,16 +44,16 @@ con.execute("""
     power_units           INTEGER DEFAULT 1,
     aux_power_type        VARCHAR(20) DEFAULT Petrol,
     aux_power_units       INTEGER DEFAULT 0,
-    tyres                 VARCHAR(20),
-    qty_tyres             INTEGER,
-    armour                VARCHAR(20),
-    attack                VARCHAR(20),
-    qty_attacks           INTEGER,
-    fireproof             BOOLEAN,
-    insulated             BOOLEAN,
-    antibiotic            BOOLEAN,
-    banging               BOOLEAN,
-    algo                  VARCHAR(20)
+    tyres                 VARCHAR(20) DEFAULT Knobbly,
+    qty_tyres             INTEGER DEFAULT 4,
+    armour                VARCHAR(20) DEFAULT None,
+    attack                VARCHAR(20) DEFAULT None,
+    qty_attacks           INTEGER DEFAULT 0,
+    fireproof             BOOLEAN DEFAULT FALSE,
+    insulated             BOOLEAN DEFAULT FALSE,
+    antibiotic            BOOLEAN DEFAULT FALSE,
+    banging               BOOLEAN DEFAULT FALSE,
+    algo                  VARCHAR(20) DEFAULT Steady
   )
 
 """)

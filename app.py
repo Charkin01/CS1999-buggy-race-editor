@@ -44,9 +44,11 @@ def create_buggy():
       power_units = request.form['power_units']
       aux_power_type = request.form['aux_power_type']
       aux_power_units = request.form['aux_power_units']
+      tyres = request.form['tyres']
+      qty_tyres = request.form['qty_tyres']
       
       #Validation of the input data
-      if not qty_wheels.isdigit() or not hamster_booster.isdigit() or not power_units.isdigit() or not aux_power_units.isdigit():
+      if not qty_wheels.isdigit() or not hamster_booster.isdigit() or not power_units.isdigit() or not aux_power_units.isdigit() or not qty_tyres.isdigit():
          msg = "You have entered characters (string) instead of digits (integers). The buggy was not created. Please, return to the main menu"
          return render_template("updated.html", msg = msg)
       if int(qty_wheels) < 4:
@@ -58,7 +60,10 @@ def create_buggy():
       if int(qty_wheels)%2 != 0:
          msg = "Buggy cannot have odd number of wheels (sad). The buggy was not created. Please, return to the main menu"
          return render_template("updated.html", msg = msg)
-
+      if int(qty_tyres) < int(qty_wheels):
+         msg = "It does not work like that. The buggy was not created. Please, return to the main menu"
+         return render_template("updated.html", msg = msg)
+      
       #total_cost identification/formula
       total_cost = 0
       if power_type.find("Petrol") != (-1):
@@ -102,7 +107,18 @@ def create_buggy():
          total_cost += 40*int(power_units)
       elif aux_power_type.find("Wind") != (-1):
          total_cost += 20*int(power_units)
-         
+
+      if tyres.find("Knobbly") != (-1):
+         total_cost += 15*int(qty_tyres)
+      elif tyres.find("Slick") != (-1):
+         total_cost += 20*int(qty_tyres)
+      elif tyres.find("Steelband") != (-1):
+         total_cost += 30*int(qty_tyres)
+      elif tyres.find("Reactive") != (-1):
+         total_cost += 40*int(qty_tyres)
+      elif tyres.find("Maglev") != (-1):
+         total_cost += 50*int(qty_tyres)
+
       total_cost += int(hamster_booster)*5
    try:
       #uploads data to database
@@ -118,6 +134,8 @@ def create_buggy():
          cur.execute("UPDATE buggies set power_units=? WHERE id=?", (power_units, DEFAULT_BUGGY_ID))
          cur.execute("UPDATE buggies set aux_power_type=? WHERE id=?", (aux_power_type, DEFAULT_BUGGY_ID))
          cur.execute("UPDATE buggies set aux_power_units=? WHERE id=?", (aux_power_units, DEFAULT_BUGGY_ID))
+         cur.execute("UPDATE buggies set tyres=? WHERE id=?", (tyres, DEFAULT_BUGGY_ID))
+         cur.execute("UPDATE buggies set qty_tyres=? WHERE id=?", (qty_tyres, DEFAULT_BUGGY_ID))
          con.commit()
          msg = "Buggy was created. Record successfully saved"
    except:
@@ -135,9 +153,10 @@ def create_buggy():
 def create_buggy_random():
     #return render_template('index.html', server_url=BUGGY_RACE_SERVER_URL)
     msg=""
+    #function that randoms value
     def randm (listik):
        return rd.choice(listik)
-
+    #function that determines cost
     def find_cost(power_type, hamster_booster, power_units, aux_power_type, aux_power_units):
        total_cost = 0
        if power_type.find("Petrol") != (-1):
@@ -203,6 +222,7 @@ def create_buggy_random():
     total_cost=50
     #it will take very long to find exact same value of total_cost.
     #total cost here does not inherit data from saved database, so now it is constant - 50
+    #It loops through attributes that affect cost and determines whether new compilation is correct
     while rules != True:
         power_type = randm(list_power)
         hamster_booster = randm(list_int)

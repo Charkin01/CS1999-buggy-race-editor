@@ -26,6 +26,10 @@
     <input type="text" name="hamster_booster" value = "{{ buggy['hamster_booster'] }}"/>
 	</br>
 	</br>
+	<label for="qty_tyres">Number of tyres:</label>
+    <input type="text" name="qty_tyres" value = "{{ buggy['qty_tyres'] }}"/>
+	</br>
+	</br>
 	<label for="qty_wheels">Number of wheels:</label>
     <input type="text" name="qty_wheels" value = "{{ buggy['qty_wheels'] }}"/>
 	</br>
@@ -34,7 +38,7 @@
     <input type="text" name="power_units" value = "{{ buggy['power_units'] }}"/>
 	</br>
 	</br>
-	<label for="aux_power_type">Auxiliary motive power</label>
+	<label for="aux_power_type">Auxiliary motive power (do not inherit saved value)</label>
     <select name="aux_power_type" id="aux_power_type" required>
 	<option value="">None</option>
 	<option value="Petrol" selected >Petrol</option>
@@ -49,7 +53,7 @@
 	</select>
 	</br>
 	</br>
-	<label for="flag_pattern">Pattern of the flag</label>
+	<label for="flag_pattern">Pattern of the flag </label>
     <select name="flag_pattern">
 	<option {% if buggy['flag_pattern'] == "Plain" %} selected {% endif %}>Plain</option>
 	<option {% if buggy['flag_pattern'] == "Vstripe" %} selected {% endif %}>Vstripe</option>
@@ -75,7 +79,19 @@
 	</select>
 	</br>
 	</br>
-	<label for="randm">Get random values (does not work yet)</label>
+	<label for="tyres">Type of tyres (do not inherit saved value)</label>
+    <select name="tyres" id="tyres" required>
+	<option value="">None</option>
+	<option value="Knobbly" selected >Knobbly</option>
+	<option value="Slick">Slick</option>
+	<option value="Steelband">Steelband</option>
+	<option value="Reactive" >Reactive</option>
+	<option value="Maglev">Maglev</option>
+	</select>
+	</br>
+	</br>
+	<label>Get random values (does not work yet). It randomises all values (except not added attributes and tyres)</label>
+	<label> It will change table a bit, in order to continue work properly, start init.py</label>
 	<a href="/new_random" class="button"> Go </a>
 	</br>
     <input type="submit" class="button">
