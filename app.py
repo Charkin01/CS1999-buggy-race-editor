@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import sqlite3 as sql
-import random
+import random as rd
 app = Flask(__name__)
 
 DATABASE_FILE = "database.db"
@@ -104,10 +104,8 @@ def create_buggy():
          total_cost += 20*int(power_units)
          
       total_cost += int(hamster_booster)*5
-         
-      msg = f"qty_wheels={qty_wheels}"
    try:
-      #make a for loop from this
+      #uploads data to database
       with sql.connect(DATABASE_FILE) as con:
          cur = con.cursor()
          cur.execute("UPDATE buggies set qty_wheels=? WHERE id=?", (qty_wheels, DEFAULT_BUGGY_ID))
@@ -128,6 +126,115 @@ def create_buggy():
    finally:
       con.close()
       return render_template("updated.html", msg = msg)
+
+#------------------------------------------------------------
+# This page randoms all values and returns to buggy.html to
+# show the result. Theoretically.
+#------------------------------------------------------------
+@app.route('/new_random', methods = ['POST', 'GET'])
+def create_buggy_random():
+    #return render_template('index.html', server_url=BUGGY_RACE_SERVER_URL)
+    msg=""
+    def randm (listik):
+       return rd.choice(listik)
+
+    def find_cost(power_type, hamster_booster, power_units, aux_power_type, aux_power_units):
+       total_cost = 0
+       if power_type.find("Petrol") != (-1):
+          total_cost += 4 * int(power_units)
+       elif power_type.find("Fusion") != (-1):
+          total_cost += 400*int(power_units)
+       elif power_type.find("Steam") != (-1):
+          total_cost += 3*int(power_units)
+       elif power_type.find("Bio") != (-1):
+          total_cost += 5*int(power_units)
+       elif power_type.find("Electric") != (-1):
+          total_cost += 20*int(power_units)
+       elif power_type.find("Rocket") != (-1):
+          total_cost += 16*int(power_units)
+       elif power_type.find("Hamster") != (-1):
+          total_cost += 3*int(power_units)
+       elif power_type.find("Thermo") != (-1):
+          total_cost += 300*int(power_units)
+       elif power_type.find("Solar") != (-1):
+          total_cost += 40*int(power_units)
+       elif power_type.find("Wind") != (-1):
+          total_cost += 20*int(power_units)
+            
+       if aux_power_type.find("Petrol") != (-1):
+          total_cost += 4 * int(power_units)
+       elif aux_power_type.find("Fusion") != (-1):
+          total_cost += 400*int(power_units)
+       elif aux_power_type.find("Steam") != (-1):
+          total_cost += 3*int(power_units)
+       elif aux_power_type.find("Bio") != (-1):
+          total_cost += 5*int(power_units)
+       elif aux_power_type.find("Electric") != (-1):
+          total_cost += 20*int(power_units)
+       elif aux_power_type.find("Rocket") != (-1):
+          total_cost += 16*int(power_units)
+       elif aux_power_type.find("Hamster") != (-1):
+          total_cost += 3*int(power_units)
+       elif aux_power_type.find("Thermo") != (-1):
+          total_cost += 300*int(power_units)
+       elif aux_power_type.find("Solar") != (-1):
+          total_cost += 40*int(power_units)
+       elif aux_power_type.find("Wind") != (-1):
+          total_cost += 20*int(power_units)
+         
+       total_cost += int(hamster_booster)*5
+       return total_cost
+
+    #all available random stuff
+    list_int = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    list_wheels = [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 22, 24, 26, 28, 30]
+    list_colours = ['Tomato, DodgerBlue, White, Black, Green, Purple']
+    list_pattern = ['Plain', 'Vstripe', 'Hstripe', 'Dstripe', 'Checker', 'Spot']
+    list_power = ['Petrol', 'Fusion', 'Hstripe', 'Electric', 'Rocket', 'Hamster', 'Thermo',  'Wind', 'Solar']
+
+    #all input
+    qty_wheels = randm(list_wheels)
+    flag_color = randm(list_colours)
+    flag_color_secondary = randm(list_colours)
+    flag_pattern = randm(list_pattern)
+    hamster_booster = randm(list_int)
+
+    rules = False
+    total_cost=50
+    #it will take very long to find exact same value of total_cost.
+    #total cost here does not inherit data from saved database, so now it is constant - 50
+    while rules != True:
+        power_type = randm(list_power)
+        hamster_booster = randm(list_int)
+        power_units = randm(list_int)
+        aux_power_type = randm(list_power)
+        aux_power_units = randm(list_int)
+        if total_cost > find_cost(power_type, hamster_booster, power_units, aux_power_type, aux_power_units):
+            rules = True
+    print (power_type)
+    try:
+       #uploads data to database
+       with sql.connect(DATABASE_FILE) as con:
+          cur = con.cursor()
+          cur.execute("UPDATE buggies set qty_wheels=? WHERE id=?", (qty_wheels, DEFAULT_BUGGY_ID))
+          cur.execute("UPDATE buggies set flag_color=? WHERE id=?", (flag_color, DEFAULT_BUGGY_ID))
+          cur.execute("UPDATE buggies set flag_color_secondary=? WHERE id=?", (flag_color_secondary, DEFAULT_BUGGY_ID))
+          cur.execute("UPDATE buggies set flag_pattern=? WHERE id=?", (flag_pattern, DEFAULT_BUGGY_ID))
+          cur.execute("UPDATE buggies set hamster_booster=? WHERE id=?", (hamster_booster, DEFAULT_BUGGY_ID))
+          cur.execute("UPDATE buggies set total_cost=? WHERE id=?", (total_cost, DEFAULT_BUGGY_ID))
+          cur.execute("UPDATE buggies set power_type=? WHERE id=?", (power_type, DEFAULT_BUGGY_ID))
+          cur.execute("UPDATE buggies set power_units=? WHERE id=?", (power_units, DEFAULT_BUGGY_ID))
+          cur.execute("UPDATE buggies set aux_power_type=? WHERE id=?", (aux_power_type, DEFAULT_BUGGY_ID))
+          cur.execute("UPDATE buggies set aux_power_units=? WHERE id=?", (aux_power_units, DEFAULT_BUGGY_ID))
+          con.commit()
+          msg = "Buggy was created. Record successfully saved"
+    except:
+       con.rollback()
+       msg = "error in update operation"
+    finally:
+       con.close()
+       return render_template("buggy.html", buggy = 1)
+   
 #------------------------------------------------------------
 # a page for displaying the buggy
 #------------------------------------------------------------
@@ -142,6 +249,9 @@ def show_buggies():
 
 #------------------------------------------------------------
 # a page for edit the buggy
+#
+# It should edit, but currently it just opens creating window
+# and does not change anything
 #------------------------------------------------------------
 @app.route('/edit/<buggy_id>')
 def edit_buggy(buggy_id):
@@ -150,7 +260,7 @@ def edit_buggy(buggy_id):
    cur = con.cursor()
    cur.execute("SELECT * FROM buggies WHERE id=?", (buggy_id,))
    record = cur.fetchone(); 
-   return render_template("buggy-form.html", buggy=record) 
+   return render_template("buggy-form.html", buggy = record) 
 
 
 #------------------------------------------------------------
@@ -174,9 +284,9 @@ def summary():
 
 #------------------------------------------------------------
 # delete the buggy
-#   don't want DELETE here, because we're anticipating
-#   there always being a record to update (because the
-#   student needs to change that!)
+#   In vanilla version of the project, it was working good. 
+#   But here it behaves differently, so to restore data, you
+#   should start init.py
 #------------------------------------------------------------
 @app.route('/delete/<buggy_id>')
 def delete_buggy(buggy_id):
