@@ -21,18 +21,39 @@ con = sqlite3.connect(DATABASE_FILE)
 print("- Opened database successfully in file \"{}\"".format(DATABASE_FILE))
 
 # using Python's triple-quote for multi-line strings:
+'''
+Wheels and flags inherit previous value.
+The rest are set to default settings
+Special rendomises all values that do not have cost
+
+
+
+'''
 
 con.execute("""
 
   CREATE TABLE IF NOT EXISTS buggies (
     id                    INTEGER PRIMARY KEY,
     qty_wheels            INTEGER DEFAULT 4,
-    flag_color            VARCHAR(20),
-    flag_color_secondary  VARCHAR(20),
-    flag_pattern          VARCHAR(20),
-    hamster_booster       INTEGER,
-    total_cost            INTEGER
-    
+    flag_color            VARCHAR(20) DEFAULT White,
+    flag_color_secondary  VARCHAR(20) DEFAULT Black,
+    flag_pattern          VARCHAR(20) DEFAULT Plain,
+    hamster_booster       INTEGER DEFAULT 0,
+    total_cost            INTEGER,
+    power_type            VARCHAR(20) DEFAULT Petrol,
+    power_units           INTEGER DEFAULT 1,
+    aux_power_type        VARCHAR(20) DEFAULT Petrol,
+    aux_power_units       INTEGER DEFAULT 0,
+    tyres                 VARCHAR(20),
+    qty_tyres             INTEGER,
+    armour                VARCHAR(20),
+    attack                VARCHAR(20),
+    qty_attacks           INTEGER,
+    fireproof             BOOLEAN,
+    insulated             BOOLEAN,
+    antibiotic            BOOLEAN,
+    banging               BOOLEAN,
+    algo                  VARCHAR(20)
   )
 
 """)

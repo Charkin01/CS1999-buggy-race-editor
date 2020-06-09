@@ -1,7 +1,6 @@
 <!doctype html>
 
-<!doctype html>
-
+<!-- neccessary to fill in - with cost. No cost, not filled. -->
 {% extends "base.html" %}
 
 {% block content %}
@@ -11,8 +10,8 @@
   <h2> Also wheels do not support input different from real number </h2>
   <form action="/new" method="post">
   <!-- Simple input with input bar -->
-    <label for="qty_wheels">Number of wheels:</label>
-    <input type="text" name="qty_wheels" value = "{{ buggy['qty_wheels'] }}"/>
+  	<label for="aux_power_units">Auxiliary motive power units</label>
+	<input type="text" name="aux_power_units" value = "{{ buggy['aux_power_units'] }}"/>
 	</br>
 	</br>
 	<label for="flag_color">Color of flag</label>
@@ -27,18 +26,57 @@
     <input type="text" name="hamster_booster" value = "{{ buggy['hamster_booster'] }}"/>
 	</br>
 	</br>
-	<label for="flag_pattern">Pattern of the flag</label>
-	<!-- dropdown selection. First it shows previous value. User have to select -->
-    <select name="flag_pattern" id="flag_pattern" required>
+	<label for="qty_wheels">Number of wheels:</label>
+    <input type="text" name="qty_wheels" value = "{{ buggy['qty_wheels'] }}"/>
+	</br>
+	</br>
+	<label for="power_units">Primary motive power units</label>
+    <input type="text" name="power_units" value = "{{ buggy['power_units'] }}"/>
+	</br>
+	</br>
+	<label for="aux_power_type">Auxiliary motive power</label>
+    <select name="aux_power_type" id="aux_power_type" required>
 	<option value="">None</option>
-	<option value="Plain" {% if buggy['flag_pattern'] == "Plain" %} selected {% endif %}>Plain</option>
-	<option value="Vstripe" {% if buggy['flag_pattern'] == "Vstripe" %} selected {% endif %}>Vstripe</option>
-	<option value="Hstripe" {% if buggy['flag_pattern'] == "Hstripe" %} selected {% endif %}>Hstripe</option>
-	<option value="Dstripe" {% if buggy['flag_pattern'] == "Dstripe" %} selected {% endif %}>Dstripe</option>
-	<option value="Checker" {% if buggy['flag_pattern'] == "Checker" %} selected {% endif %}>Checker</option>
-	<option value="Spot" {% if buggy['flag_pattern'] == "Spot" %} selected {% endif %}>Spot</option>
+	<option value="Petrol" selected >Petrol</option>
+	<option value="Fusion">Fusion</option>
+	<option value="Steam Bio">Hstripe</option>
+	<option value="Electric" >Electric</option>
+	<option value="Rocket">Rocket</option>
+	<option value="Hamster">Hamster</option>
+	<option value="Thermo">Thermo</option>
+	<option value="Solar">Solar</option>
+	<option value="Wind">Wind</option>
 	</select>
 	</br>
+	</br>
+	<label for="flag_pattern">Pattern of the flag</label>
+    <select name="flag_pattern">
+	<option {% if buggy['flag_pattern'] == "Plain" %} selected {% endif %}>Plain</option>
+	<option {% if buggy['flag_pattern'] == "Vstripe" %} selected {% endif %}>Vstripe</option>
+	<option {% if buggy['flag_pattern'] == "Hstripe" %} selected {% endif %}>Hstripe</option>
+	<option {% if buggy['flag_pattern'] == "Dstripe" %} selected {% endif %}>Dstripe</option>
+	<option {% if buggy['flag_pattern'] == "Checker" %} selected {% endif %}>Checker</option>
+	<option {% if buggy['flag_pattern'] == "Spot" %} selected {% endif %}>Spot</option>
+	</select>
+	</br>
+	</br>
+	<label for="power_type">Primary motive power</label>
+    <select name="power_type" id="aux_power_type" required>
+	<option value="">None</option>
+	<option value="Petrol" selected >Petrol</option>
+	<option value="Fusion">Fusion</option>
+	<option value="Steam Bio">Hstripe</option>
+	<option value="Electric" >Electric</option>
+	<option value="Rocket">Rocket</option>
+	<option value="Hamster">Hamster</option>
+	<option value="Thermo">Thermo</option>
+	<option value="Solar">Solar</option>
+	<option value="Wind">Wind</option>
+	</select>
+	</br>
+	</br>
+	<label for="randm">Get random values (does not work yet)</label>
+	<button> Go </button>
 	</br>
     <input type="submit" class="button">
   </form>
