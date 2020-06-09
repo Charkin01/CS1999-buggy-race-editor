@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import sqlite3 as sql
+import random
 app = Flask(__name__)
 
 DATABASE_FILE = "database.db"
@@ -140,11 +141,16 @@ def show_buggies():
   return render_template("buggy.html", buggy = record)
 
 #------------------------------------------------------------
-# a page for displaying the buggy
+# a page for edit the buggy
 #------------------------------------------------------------
-@app.route('/new')
-def edit_buggy():
-  return render_template("buggy-form.html")
+@app.route('/edit/<buggy_id>')
+def edit_buggy(buggy_id):
+   con = sql.connect(DATABASE_FILE)
+   con.row_factory = sql.Row
+   cur = con.cursor()
+   cur.execute("SELECT * FROM buggies WHERE id=?", (buggy_id,))
+   record = cur.fetchone(); 
+   return render_template("buggy-form.html", buggy=record) 
 
 
 #------------------------------------------------------------
@@ -172,22 +178,23 @@ def summary():
 #   there always being a record to update (because the
 #   student needs to change that!)
 #------------------------------------------------------------
-@app.route('/delete', methods = ['POST'])
-def delete_buggy():
-  try:
-    msg = "deleting buggy"
-    with sql.connect(DATABASE_FILE) as con:
-      cur = con.cursor()
-      cur.execute("DELETE FROM buggies")
-      con.commit()
-      msg = "Buggy deleted"
-  except:
-    con.rollback()
-    msg = "error in delete operation"
-  finally:
-    con.close()
-    return render_template("updated.html", msg = msg)
+@app.route('/delete/<buggy_id>')
+def delete_buggy(buggy_id):
+   try:
+      msg = "deleting buggy"
+      with sql.connect(DATABASE_FILE) as con:
+         cur = con.cursor()
+         cur.execute("DELETE FROM buggies WHERE id=?", (buggy_id,))
+         con.commit()
+         msg = "Buggy deleted"
+   except:
+      con.rollback()
+      msg = "error in delete operation"
+   finally:
+      con.close()
+      return render_template("updated.html", msg = msg)
 
 
 if __name__ == '__main__':
    app.run(debug = True, host="0.0.0.0")
+
