@@ -1,0 +1,301 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+	.cs1999-tasks {
+		border-top: 1px solid black;
+		margin-top: 4em;
+	  }
+	.cs1999-tasks .task {
+		margin: 1em;
+		padding: 1em;
+		border: 1px solid black;
+		background-color: white;
+	  }
+	.cs1999-tasks .task h2 {
+		border-bottom: 3px solid gray;
+		background-color: white;
+	  }
+ 	.myDivWhite {
+		background-color: white;
+		width: 49%;
+}
+ 	.myDiv1 {
+		border: 15px outset purple;
+		border-style: dotted;
+		background-color: #AF7AC5 ;
+		padding-left: 30px;
+		padding-right: 10px;
+		width: 45%;
+}
+ 	.myDiv2 {
+		border: 15px outset darkred;
+		border-style: dotted;
+		background-color: #CB4335 ;
+		padding-left: 30px;
+		padding-right: 10px;
+		width: 45%;
+}
+ 	.myDiv3 {
+		border: 15px outset darkorange;
+		border-style: dotted;
+		background-color: #F5B041 ;
+		padding-left: 30px;
+		padding-right: 10px;
+		width: 45%;
+}
+ 	.myDiv4 {
+		border: 15px outset darkgreen;
+		border-style: dotted;
+		background-color: #229954 ;
+		padding-left: 30px;
+		padding-right: 10px;
+		width: 45%;
+}
+</style>
+</br>
+<h2 style="color:rgb(109, 33, 130)"> Heeeeeey, whats up? U wnt sum buggy?</h2>
+<h3 style="color:rgb(101, 62, 119)"> I will tell you about all treasures hidden in this app </h3>
+<h4 style="color:rgb(118, 86, 133)"> Just stick with me </h4>
+<h5 style="color:rgb(169, 148, 179)"> >:D </h5>
+<div class="myDiv1">
+	<h5> 
+	First, start init.py and initialise in git following command: FLASK_ENV=development python app.py
+	Open localhost and <strong> feel welcome </strong>
+	</h5>
+</div>
+<div class="myDivWhite">
+	<h3 style="color:rgb(101, 62, 119)"> In this app you can feel like a real tester-developper - app is in the middle of development </h3>
+	<h5 style="color:rgb(169, 148, 179)"> Don't thank us for such a great opportunity </h5>
+</div>
+<div class="myDiv2">
+	<h5> 
+	You can enter different attributes, customise your buggy as you want (as long as it obeys game rules.)
+	Careful, some attributes affect cost. The thing is that cost shows whether your buggy will participate in race 
+	Anyway, output window will if everything is fine or not
+	Features: 1. if you enter color known to CSS/HTML, the table bar in "Show buggies" will change.
+	2. Majority of input attributes inherit data from saved version
+	3. You can see unique CSS design and good user interface
+	4. Good validation of the input data
+	</h5>
+</div>
+<div class="myDivWhite">
+	<h3 style="color:rgb(101, 62, 119); "> As a tester you can report first bug - button go that randoms values does not work properly </h3>
+	<h5 style="color:rgb(169, 148, 179);"> It is not ready yet </h5>
+</div>
+<div class="myDiv3">
+	<h5> 
+	You check out new buggy in "Show buggies". Yes, buggy has a lot of attributes and you can change them. 
+	<strong> Most of them ... </strong>
+	Features. 1. Flag color bar changes colour
+	2. Edit and delete buttons here that partially work
+	3. Full database of attributes that buggy could have. 
+	4. If you open pure version of this project (with database created from init.py) you see that table has default values
+	5. Calculates cost perfectly for all input values.
+	</h5>
+</div>
+<div class="myDivWhite">
+	<h3 style="color:rgb(101, 62, 119); "> You can see two buttons - edit and delete. They will not crash your program </h3>
+	<h5 style="color:rgb(169, 148, 179);"> But edit does not saves data, delete erases data and in order to restart you need to start 'init.py' </h5>
+</div>
+<div class="myDiv4">
+	<h5> 
+	Get buggy JSON shows SKU (code-id) that programm will send if you try to connect to the server
+	Feature: It records full database
+	<strong> Works! </strong>
+	</h5>
+</div>
+<div class="myDivWhite">
+	<h3 style="color:rgb(101, 62, 119); "> So you can try to be a really cool developer and fix many features/make them better </h3>
+	<h5 style="color:rgb(169, 148, 179);"> If current issues are not enough, you can <a href="http://rhul.buggyrace.net/project/">fix more </a></h5>
+</div>
+<p>
+	<a href="/" class="button">home</a>
+</p>
+<section class="cs1999-tasks">
+	<div class="task">
+		<h2>0-GET Get the source code</h2>
+		<p>
+			I forked the repo on GitHub (Charkin01) and then used <code>git clone link</code> to make a local copy.
+		</p>
+		<p>
+			Once the repo was on my own machine I was able to commit changes to version control
+			as I went along, and I pushed back up to my GitHub repo at the end of each day.
+			I have logged in in the git and since this moment there was no need to renter github
+			accound details. Basically, I forked to versions - rhul, original, and mine, new. I used 
+			both project sort some bugs.
+		</p>
+	</div>
+	<div class="task">
+		<h2>0-RUN Get app running and view it in a browser</h2>
+		<p>
+			I have done some projects related to the flask, python and common libraries. So they were already installed. 
+			However I had some problems with virtual machine - it refused to work with my commands. Then I have read README file
+		</p>
+		<p>
+			It only could work with one command <code> FLASK_ENV=development python app.py </code>. So now I could setup my webserver
+			if I run this code on my git repository, start init.py and ask browser to output http://localhost:5000. 
+		</p>
+	</div>
+	<div class="task">
+		<h2>0-CHANGE Make a change to a template and see it appear</h2>
+		<p>
+			You can see in the index that the buttons changed from 'buggy' to 'buggies'.
+		</p>
+		<p>
+			I have opened file with my task editor, Notepad++. I had no problems with updating because I have used development mode,
+			where changes are immediately shown on the webserver. If you use another mode, it the page would not update. Or you are changing
+			different file. I decided that this small change is not necessary to commit. It is not in my style. However, I used commit of 
+			later.
+		</p>
+	</div>
+	<div class="task">
+		<h2>1-ADD Add more data to the form</h2>
+		<p>
+			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+		</p>
+		<p>
+			Once the repo was on my own machine I was able to commit changes to version control
+			as I went along, and I pushed back up to my GitHub repo at the end of each day.
+			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
+			username and password every time I pushed.
+		</p>
+	</div>
+	<div class="task">
+		<h2>1-VALID Add basic data validation</h2>
+		<p>
+			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+		</p>
+		<p>
+			Once the repo was on my own machine I was able to commit changes to version control
+			as I went along, and I pushed back up to my GitHub repo at the end of each day.
+			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
+			username and password every time I pushed.
+		</p>
+	</div>
+	<div class="task">
+		<h2>1-STYLE Style your editor just how you like it</h2>
+		<p>
+			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+		</p>
+		<p>
+			Once the repo was on my own machine I was able to commit changes to version control
+			as I went along, and I pushed back up to my GitHub repo at the end of each day.
+			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
+			username and password every time I pushed.
+		</p>
+	</div>
+	<div class="task">
+		<h2>2-EDIT Edit the record by loading its current values into the form</h2>
+		<p>
+			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+		</p>
+		<p>
+			Once the repo was on my own machine I was able to commit changes to version control
+			as I went along, and I pushed back up to my GitHub repo at the end of each day.
+			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
+			username and password every time I pushed.
+		</p>
+	</div>
+	<div class="task">
+		<h2>2-FORM Make the form better</h2>
+		<p>
+			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+		</p>
+		<p>
+			Once the repo was on my own machine I was able to commit changes to version control
+			as I went along, and I pushed back up to my GitHub repo at the end of each day.
+			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
+			username and password every time I pushed.
+		</p>
+	</div>
+	<div class="task">
+		<h2>2-COST Calculate and save the game cost of the buggy</h2>
+		<p>
+			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+		</p>
+		<p>
+			Once the repo was on my own machine I was able to commit changes to version control
+			as I went along, and I pushed back up to my GitHub repo at the end of each day.
+			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
+			username and password every time I pushed.
+		</p>
+	</div>
+	<div class="task">
+		<h2>2-RULES Add validation according to the game rules</h2>
+		<p>
+			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+		</p>
+		<p>
+			Once the repo was on my own machine I was able to commit changes to version control
+			as I went along, and I pushed back up to my GitHub repo at the end of each day.
+			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
+			username and password every time I pushed.
+		</p>
+	</div>
+	<div class="task">
+		<h2>3-ENV Switch to using development or production environments</h2>
+		<p>
+			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+		</p>
+		<p>
+			Once the repo was on my own machine I was able to commit changes to version control
+			as I went along, and I pushed back up to my GitHub repo at the end of each day.
+			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
+			username and password every time I pushed.
+		</p>
+	</div>
+	<div class="task">
+		<h2>3-AUTOFILL Add auto-fill to the edit forms</h2>
+		<p>
+			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+		</p>
+		<p>
+			Once the repo was on my own machine I was able to commit changes to version control
+			as I went along, and I pushed back up to my GitHub repo at the end of each day.
+			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
+			username and password every time I pushed.
+		</p>
+	</div>
+	<div class="task">
+		<h2>3-MULTI Allow different buggies to be created</h2>
+		<p>
+			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+		</p>
+		<p>
+			Once the repo was on my own machine I was able to commit changes to version control
+			as I went along, and I pushed back up to my GitHub repo at the end of each day.
+			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
+			username and password every time I pushed.
+		</p>
+	</div>
+	<div class="task">
+		<h2>3-DEL Allow buggies to be deleted</h2>
+		<p>
+			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+		</p>
+		<p>
+			Once the repo was on my own machine I was able to commit changes to version control
+			as I went along, and I pushed back up to my GitHub repo at the end of each day.
+			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
+			username and password every time I pushed.
+		</p>
+	</div>
+	<div class="task">
+		<h2>3-FLAG Display the pennant graphically</h2>
+		<p>
+			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+		</p>
+		<p>
+			Once the repo was on my own machine I was able to commit changes to version control
+			as I went along, and I pushed back up to my GitHub repo at the end of each day.
+			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
+			username and password every time I pushed.
+		</p>
+	</div>
+</section>
+
+ <p>
+    <a href="/" class="button">home</a>
+ </p>
+{% endblock %}
