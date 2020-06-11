@@ -129,12 +129,13 @@
 	<div class="task">
 		<h2>0-RUN Get app running and view it in a browser</h2>
 		<p>
-			I have done some projects related to the flask, python and common libraries. So they were already installed. 
-			However I had some problems with virtual machine - it refused to work with my commands. Then I have read README file
+			I have done some projects related to the flask, python, and common libraries. So they were already installed. 
+			However I had some problems with the virtual machine - it refused to work with my commands. Then I have read README file
 		</p>
 		<p>
-			It only could work with one command <code> FLASK_ENV=development python app.py </code>. So now I could setup my webserver
-			if I run this code on my git repository, start init.py and ask browser to output http://localhost:5000. 
+			It only could work with one command <code> FLASK_ENV=development python app.py </code>. 
+			So now I could set up my webserver if I run this code on my git repository, 
+			start init.py, and ask the browser to output http://localhost:5000. 
 		</p>
 	</div>
 	<div class="task">
@@ -143,157 +144,213 @@
 			You can see in the index that the buttons changed from 'buggy' to 'buggies'.
 		</p>
 		<p>
-			I have opened file with my task editor, Notepad++. I had no problems with updating because I have used development mode,
-			where changes are immediately shown on the webserver. If you use another mode, it the page would not update. Or you are changing
-			different file. I decided that this small change is not necessary to commit. It is not in my style. However, I used commit of 
-			later.
+			I have opened a file with my task editor, Notepad++. I had no problems with updating because I have used development mode,
+			where changes are immediately shown on the webserver. If you use another mode, the page would not update. Or you are changing
+			the different files. I decided that this small change is not necessary to commit. It is not in my style. 
 		</p>
 	</div>
 	<div class="task">
 		<h2>1-ADD Add more data to the form</h2>
 		<p>
-			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+			I just copied attributes of <code> qty_wheels </code> into <code> color_flag </code>. And changed variables. This solved the problem. 
+			First I have added <code> color_flag </code> but then I realised that I need to add more attributes. 
 		</p>
 		<p>
-			Once the repo was on my own machine I was able to commit changes to version control
-			as I went along, and I pushed back up to my GitHub repo at the end of each day.
-			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
-			username and password every time I pushed.
+			Each input required input box/dropdown, code in app.py to understand it, space for such kind of data in the database,
+			and 'show buggies' should output this all attributes and their value. My database and 'show buggies' operate with 
+			the whole database but the user can change only 3/5 out of all attributes. 
+		</p>
+		<p> 
+			Later I have used a <code> select </code> tag for limited input, but radio is still not obtained. And I did not commit each new attribute because
+			the concept of adding them was simple, fast and, most importantly, did not erase the program. I understand that it is a bad technique 
+			but here could be an exception
 		</p>
 	</div>
 	<div class="task">
 		<h2>1-VALID Add basic data validation</h2>
 		<p>
-			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+			I have used isdigit method, but it did not work from the first time (flask compilator is bad) but later it resolved the problem
 		</p>
 		<p>
-			Once the repo was on my own machine I was able to commit changes to version control
-			as I went along, and I pushed back up to my GitHub repo at the end of each day.
-			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
-			username and password every time I pushed.
+			There was no need in <code> string.strip() </code> because isdigit was already working. Passing data had good quality because I 
+			have used suitable input options in <code> buggies-form.html </code>. 
+		</p>
+		<p>
+			If input data does not pass simple validation, the warning page appears with information about what program did not like exactly. Initially,
+			I used to update the window, but later I had to change the technique due to the fact that app becomes more complex. And validation on python is 
+			enough, no need in changing SQL code.
+		</p>
+		<p>
+			Java-script is client-side work. It means, the website will load more if the computer has weak characteristics. Also it's about personal data protection
+			(cookies) that pass between client and server. It's better to play safe and put most of the code on the server.
 		</p>
 	</div>
 	<div class="task">
 		<h2>1-STYLE Style your editor just how you like it</h2>
 		<p>
-			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+			I believe that beauty in its simple, so I just changed colours and backgound on my preference and taste. 
 		</p>
 		<p>
-			Once the repo was on my own machine I was able to commit changes to version control
-			as I went along, and I pushed back up to my GitHub repo at the end of each day.
-			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
-			username and password every time I pushed.
+			It required only CSS code, so the only app.css file was changed in this task. 
+		</p>
+		<p>
+			Most of all data output/input/labels use white background to avoid merging of backround and words. 
 		</p>
 	</div>
 	<div class="task">
 		<h2>2-EDIT Edit the record by loading its current values into the form</h2>
 		<p>
-			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+			I just copied working code from function <code> show_buggies() </code> into buggy form and added <code> value = 'saved value' </code> 
+			in each section of input in <code> buggy-form.html </code> 
 		</p>
 		<p>
-			Once the repo was on my own machine I was able to commit changes to version control
-			as I went along, and I pushed back up to my GitHub repo at the end of each day.
-			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
-			username and password every time I pushed.
+			For <code> selection </code> i have used if statemnt in flask, <code>  (if buggy['attribute'] = "special_value") selected (end if) </code>
+		</p>
+		<p>
+			This feature always loads because databse always have default values in it.
 		</p>
 	</div>
 	<div class="task">
 		<h2>2-FORM Make the form better</h2>
 		<p>
-			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+			I used tag <code> select </code> for limited input data. There was no need for validation for such kind of data
 		</p>
 		<p>
-			Once the repo was on my own machine I was able to commit changes to version control
-			as I went along, and I pushed back up to my GitHub repo at the end of each day.
-			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
-			username and password every time I pushed.
+			Issue for #2-edit with select was explained in previous part
+		</p>
+		<p>
+			All buttons/features that do not properly, have warning messages and comments about it in the code. And my app has does not lead to any errors,
+			so there was no need in changing compilator/debugger for user.
 		</p>
 	</div>
 	<div class="task">
 		<h2>2-COST Calculate and save the game cost of the buggy</h2>
 		<p>
-			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+			Formula for cost was always changing in each my git commit because I always added new attributes.
 		</p>
 		<p>
-			Once the repo was on my own machine I was able to commit changes to version control
-			as I went along, and I pushed back up to my GitHub repo at the end of each day.
-			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
-			username and password every time I pushed.
+			Cost is added in database. Also it starts calculating only after validation procedure. \
+			Currently cost evaluates value for all input attributes. 
+		</p>
+		<p>
+			If cost will change, I will need to change whole formula section, my code is not prepared for this case. 
+			But if I had time, I would make simple script that stores values (cost for each attribute) every in database every time when computer gets
+			the internet access.
 		</p>
 	</div>
 	<div class="task">
 		<h2>2-RULES Add validation according to the game rules</h2>
 		<p>
-			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+			My validation for rules works for every input, and it always obeys game rules. 
 		</p>
 		<p>
-			Once the repo was on my own machine I was able to commit changes to version control
-			as I went along, and I pushed back up to my GitHub repo at the end of each day.
-			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
-			username and password every time I pushed.
+			For each wrong input data (for example: worng type of input, wrong number, odd number of wheels, tyres less than wheels) there is a suitable 
+			output window in <code> updated.html </code> where all details of incorrect input are listed. 
+		</p>
+		<p>
+			If there are rule violations, program refuses to save it. 
+		</p>
+		<p>
+			If game rules would change, my program probably won't be ready, and developer will need to hardcode all changes. And app does not receive notification 
+			about changed rules (for validaiton and total cost)
 		</p>
 	</div>
 	<div class="task">
 		<h2>3-ENV Switch to using development or production environments</h2>
 		<p>
-			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+			There are two types of using flask = development and production. Both works, I edited all data in development mode, I test my code in production mode
 		</p>
 		<p>
-			Once the repo was on my own machine I was able to commit changes to version control
-			as I went along, and I pushed back up to my GitHub repo at the end of each day.
-			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
-			username and password every time I pushed.
+			For development - <code> FLASK_ENV=development python app.py </code>
+		</p>
+		<p>
+			For production - <code> FLASK_ENV=production python app.py </code>
+		</p>
+		<p>
+			Another way of hosting webserver is <code> python-dotenv </code>. It is used for more complex projects where probraly <code> os library </code> is required
+			But I decided to use old path, flask because it was already working and dotenv creates new files, has its onw syntaaxis and required for a lot bigger proejects
+			compare with buggies.
 		</p>
 	</div>
 	<div class="task">
 		<h2>3-AUTOFILL Add auto-fill to the edit forms</h2>
 		<p>
-			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+			I don't have deep knowledge in java-script, so I decided to do it with python and random library
 		</p>
 		<p>
-			Once the repo was on my own machine I was able to commit changes to version control
-			as I went along, and I pushed back up to my GitHub repo at the end of each day.
-			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
-			username and password every time I pushed.
+			When you press button "Go" in creating buggy, you get to the page in flask <code> create_buggy_random </code>
+			Here all input values get randomised and validated in terms of cost and game rules
+			After they are uploaded to database. I believe there is a bug, in uploading, because all data deletes and table
+			is broken. This can be fixed if user start init.py. 
 		</p>
 	</div>
 	<div class="task">
 		<h2>3-MULTI Allow different buggies to be created</h2>
 		<p>
-			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+			I have created link, edit, and changed the way function "edit_buggy" works in app.py. Then I introduced with bugs
 		</p>
 		<p>
-			Once the repo was on my own machine I was able to commit changes to version control
-			as I went along, and I pushed back up to my GitHub repo at the end of each day.
-			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
-			username and password every time I pushed.
+			First bug: one attribute creates one new buggy, but two attributes create two new buggies where only one attribute has changed
+			Second bug: #2 edit also uses attribute <code> value </code> in html. So they collapse and output error.
+			These are two main reasons this feature works differently 
+		</p>
+		<p>
+			When you press "edit", it moves you to <code> buggy-form.html </code>. But changes that you do here does not save. So when you move to see your changed
+			buggy, you will find old version
+		</p>
+		<p>
+			In working version, buggy-form should identify whether it creating or editing buggy using buggy_id - if it is none -> crating, if it has value -> editing
+			And new changes should be sent to database using SQL command <code> execute("UPDATE buggies set (variable)=?  WHERE id=?", ((variable), buggy_id)) </code> and upload with <code> fetchall </code>
+			<code> base.html </code> should be change css foler, by adding "/" to include CSS in editing page. 
 		</p>
 	</div>
 	<div class="task">
 		<h2>3-DEL Allow buggies to be deleted</h2>
 		<p>
-			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+			This function works, it deletes old data.
 		</p>
 		<p>
-			Once the repo was on my own machine I was able to commit changes to version control
-			as I went along, and I pushed back up to my GitHub repo at the end of each day.
-			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
-			username and password every time I pushed.
+			This function is used to delete certain buggy out of five for example. In my code this function deletes all variables and leaves table empty. User cannot 
+			create new buggy within app, he should start init.py and create new database for buggy.
+		</p>
+		<p>
+			In theory, if user wants to delete all buggies in properly working app, he would not have any problems. In <code> buggy.html </code> would not show anything because there is nothing.
+			There would not be any error. 
 		</p>
 	</div>
 	<div class="task">
 		<h2>3-FLAG Display the pennant graphically</h2>
 		<p>
-			I forked the repo on GitHub and then used <code>git clone</code> to make a local copy.
+			IF user used my hint and submited specific colour, in <code> buggy.html </code> he would find that the bar before his colour has changed its colour.
 		</p>
 		<p>
-			Once the repo was on my own machine I was able to commit changes to version control
-			as I went along, and I pushed back up to my GitHub repo at the end of each day.
-			I followed GitHub's instructions and set up a SSH key so I didn't need to enter
-			username and password every time I pushed.
+			I just used tag <code> style background:flag_color; </code> with flask addings. The program does not before user adds his own colour because there are already default values
+		</p>
+		<p>
+			My solution is server-based. If I had client based solution, it would show colour in <code> buggy-form.html </code> 
+		</p>
+		<p>
+			If I wanted to show colour on separate space, I would use CSS SVG because with SVG it gives smaller file size and easy to edit rather than CSS CANVAS. 
+			However CANVAS is faster to implement. 
 		</p>
 	</div>
-</section>
+	<canvas id="myCanvas" width="200" height="100" padding-left: 20px style="border:1px solid #DBC717" >
+	</canvas>
+	<script>
+		var c = document.getElementById("myCanvas");
+		var ctx = c.getContext("2d");
+		// Create gradient
+		var grd = ctx.createLinearGradient(0,0,200,0);
+		grd.addColorStop(0,"red");
+		grd.addColorStop(1,"white");
+		// Fill with gradient
+		ctx.fillStyle = grd;
+		ctx.fillRect(10,10,150,80);
+	</script>
+	<p>
+		Just small code with CANVAS
+	</p>
+	</section>
 
  <p>
     <a href="/" class="button">home</a>
